@@ -2,7 +2,7 @@ import axios from 'axios';
 import {store} from '../store';
 
 // const api = axios.create({ baseURL: 'http://localhost:5000' });
-const api = axios.create({ baseURL: 'https://legendaryteam.online:5000' });
+const api = axios.create({ baseURL: 'https://api.utol.com.br' });
 
 export const inserirUsuario = async (nome, email, telefone, empresa, cpf, senha) => {
     try {
