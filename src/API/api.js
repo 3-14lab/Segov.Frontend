@@ -3,7 +3,7 @@ import {store} from '../store';
 
 // const api = axios.create({ baseURL: 'http://localhost:5000' });
 // teste
-const api = axios.create({ baseURL: 'https://api.utol.com.br' });
+const api = axios.create({ baseURL: 'https://segov.herokuapp.com/' });
 
 export const inserirUsuario = async (nome, email, telefone, empresa, cpf, senha) => {
     try {
