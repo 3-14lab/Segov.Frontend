@@ -556,10 +556,11 @@ export default {
         }
     },
     mounted: function(){
-        for(let i = 0; i <= 0; i++){
-            const ano = 2021 + i;
 
-            this.anos.push(ano);
+        const now = new Date(Date.now())
+        const currentYear = now.getFullYear();
+        for(let i = 2021; i <= currentYear; i++){
+            this.anos.push(i);
         }
     },
     created: function(){
