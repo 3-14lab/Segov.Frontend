@@ -60,30 +60,33 @@
 
                     <div class="FormatacaoBox">
                         <div class="LineBox">
-                            <label for="">Selecione o Estado e o Município dos dados do arquivo a ser validado</label>
+                            <label for="">Selecione União/Estado e o município ou orgão dos dados do arquivo a ser validado.</label>
                             <div class="ManualBox">
                                 <p class="ManualIcon">?</p>
-                                <span class="tooltiptext">Unidade Federativa do município ao qual o arquivo se refere.<br/>Município ao qual o arquivo se refere.</span>
+                                <span class="tooltiptext">Primeiro escolha União/Estado ao qual o arquivo se refere.<br>Segundo, escolha o Município/Órgão ao qual se refere o arquivo.</span>
                             </div>
                         </div>
                         
                         <div id="UploadMunicipioBox">
+                    
                             <select name="" id="" v-model="estado" @change="resetMunicipio">
-                                <option value="" disabled hidden selected>Estado</option>
+                                <option value="" disabled hidden selected>União/Estado</option>
                                 <option 
                                     v-for="(item, index) in municipios"
                                     :key="index"
                                     :value="index"
                                 >{{index}}</option>
+                        
                             </select>
 
                             <select name="" id="" v-model="municipio">
-                                <option value="" disabled hidden selected>Município</option>
+                                <option value="" disabled hidden selected>Município/Órgão</option>
                                 <option 
                                     v-for="(item, index) in estado ? selected_estado : []"
                                     :key="index"
                                     :value="titlelize(item)"
                                 >{{titlelize(item)}}</option>
+                                
                             </select>
                         </div>
                     </div>
@@ -190,6 +193,7 @@ export default {
             anos: [],
 
             municipios: {
+                ["Uniao"] : ["UFMS - Universidade Federal do Mato Grosso do Sul"],
                 ["Acre"] : ["CRUZEIRO DO SUL", "RIO BRANCO", "ACRELÂNDIA", "ASSIS BRASIL", "BRASILEIA", "BRASILÉIA", "BUJARI", "CAPIXABA", "EPITACIOLÂNDIA", "FEIJÓ", "JORDÃO", "MÂNCIO LIMA", "MANOEL URBANO", "MARECHAL THAUMATURGO", "PLÁCIDO DE CASTRO", "PORTO ACRE", "PORTO WALTER", "RODRIGUES ALVES", "SANTA ROSA DO PURUS", "SENA MADUREIRA", "SENADOR GUIOMARD", "TARAUACÁ", "XAPURI"],
                 ["Alagoas"] : ["ATALAIA", "BARRA DE SÃO MIGUEL", "CAMPO ALEGRE", "OURO BRANCO", "PILAR", "PIRANHAS", "VIÇOSA", "ÁGUA BRANCA", "ÁGUA BRANCA", "ANADIA", "ARAPIRACA", "BARRA DE SANTO ANTÔNIO", "BATALHA", "BELÉM", "BELO MONTE", "BOCA DA MATA", "BRANQUINHA", "CACIMBINHAS", "CAJUEIRO", "CAMPESTRE", "CAMPO GRANDE", "CANAPI", "CAPELA", "CARNEIROS", "CHÃ PRETA", "COITÉ DO NÓIA", "COLÔNIA LEOPOLDINA", "COQUEIRO SECO", "CORURIPE", "CRAÍBAS", "DELMIRO GOUVEIA", "DOIS RIACHOS", "ESTRELA DE ALAGOAS", "FEIRA GRANDE", "FELIZ DESERTO", "FLEXEIRAS", "GIRAU DO PONCIANO", "IBATEGUARA", "IGACI", "IGREJA NOVA", "INHAPI", "JACARÉ DOS HOMENS", "JACUÍPE", "JAPARATINGA", "JARAMATAIA", "JEQUIÁ DA PRAIA", "JOAQUIM GOMES", "JUNDIÁ", "JUNQUEIRO", "LAGOA DA CANOA", "LIMOEIRO DE ANADIA", "MACEIÓ", "MAJOR ISIDORO", "MAR VERMELHO", "MARAGOGI", "MARAVILHA", "MARECHAL DEODORO", "MARIBONDO", "MATA GRANDE", "MATRIZ DE CAMARAGIBE", "MESSIAS", "MINADOR DO NEGRÃO", "MONTEIRÓPOLIS", "MURICI", "NOVO LINO", "OLHO D'ÁGUA DAS FLORES", "OLHO D'ÁGUA DO CASADO", "OLHO D'ÁGUA GRANDE", "OLIVENÇA", "PALESTINA", "PALMEIRA DOS ÍNDIOS", "PÃO DE AÇÚCAR", "PARICONHA", "PARIPUEIRA", "PASSO DE CAMARAGIBE", "PAULO JACINTO", "PENEDO", "PIAÇABUÇU", "PINDOBA", "POÇO DAS TRINCHEIRAS", "PORTO CALVO", "PORTO DE PEDRAS", "PORTO REAL DO COLÉGIO", "QUEBRANGULO", "RIO LARGO", "ROTEIRO", "SANTA LUZIA DO NORTE", "SANTANA DO IPANEMA", "SANTANA DO MUNDAÚ", "SÃO BRÁS", "SÃO JOSÉ DA LAJE", "SÃO JOSÉ DA TAPERA", "SÃO LUÍS DO QUITUNDE", "SÃO MIGUEL DOS CAMPOS", "SÃO MIGUEL DOS MILAGRES", "SÃO SEBASTIÃO", "SATUBA", "SENADOR RUI PALMEIRA", "TANQUE D'ARCA", "TAQUARANA", "TEOTÔNIO VILELA", "TRAIPU", "UNIÃO DOS PALMARES"],
                 ["Amapá"] : ["SANTANA", "AMAPÁ", "CALÇOENE", "CUTIAS", "FERREIRA GOMES", "ITAUBAL", "LARANJAL DO JARI", "MACAPÁ", "MAZAGÃO", "OIAPOQUE", "PEDRA BRANCA DO AMAPARI", "PORTO GRANDE", "PRACUÚBA", "SERRA DO NAVIO", "TARTARUGALZINHO", "VITÓRIA DO JARI"],
@@ -492,7 +496,7 @@ export default {
 
             if(!this.estado || !this.municipio || this.estado == "" || this.municipio == ""){
                 this.errorUpload = true;
-                this.messagesErrorUpload.push("Selecione um Estado e um Município.");
+                this.messagesErrorUpload.push("Selecione um Estado/União e um Município/Órgão.");
             }
 
             return this.errorUpload;
